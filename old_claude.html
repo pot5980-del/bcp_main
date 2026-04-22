@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AUD Platform · BCP 업무포털</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #12122A;
+    --accent-orange: #F5A623;
+    --bg-page: #EEF0F5;
+    --bg-card: #ffffff;
+    --border: #E2E4EA;
+    --text-primary: #1A1A2E;
+    --text-secondary: #6B6E82;
+    --text-muted: #A0A3B1;
+    --blue: #2D7DD2;
+    --green: #1D9E75;
+    --red: #E24B4A;
+    --amber: #EF9F27;
+    --purple: #7F77DD;
+    --radius-sm: 6px;
+    --radius-md: 9px;
+    --radius-lg: 12px;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-page);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-primary);
+    font-size: 13px;
+  }
+
+  /* ── LAYOUT ─────────────────────────────── */
+  .portal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ── TOPBAR ──────────────────────────────── */
+  .topbar {
+    background: var(--navy);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+  }
+  .logo-mark {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-orange);
+    clip-path: polygon(0 50%,55% 0,55% 35%,100% 35%,100% 65%,55% 65%,55% 100%);
+    flex-shrink: 0;
+  }
+  .logo-divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,0.2);
+  }
+  .logo-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+  }
+  .top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .bell-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .user-chip {
+    background: rgba(255,255,255,0.1);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 13px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* ── GREET BAR ───────────────────────────── */
+  .greetbar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    flex-shrink: 0;
+  }
+  .greet-text { font-size: 13px; font-weight: 400; }
+  .greet-text strong { font-weight: 700; }
+  .greet-date { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+  .quicklinks { display: flex; gap: 6px; }
+  .ql {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .ql:hover { opacity: 0.8; }
+  .ql-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── BODY GRID ───────────────────────────── */
+  .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 280px;
+    gap: 12px;
+    padding: 14px 20px 20px;
+    align-items: start;
+  }
+  .col { display: flex; flex-direction: column; gap: 12px; }
+
+  /* ── CARD ────────────────────────────────── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+  }
+  .ch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .ct {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .ca {
+    font-size: 11px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .ca:hover { color: var(--text-primary); }
+
+  /* ── 일일업무 ─────────────────────────────── */
+  .dept-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .task-block { margin-bottom: 14px; }
+  .task-block:last-of-type { margin-bottom: 0; }
+  .task-block-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tb-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .task-list { display: flex; flex-direction: column; gap: 4px; }
+  .task-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 7px 10px;
+    background: #F7F8FB;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .task-num {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    min-width: 16px;
+    font-size: 11px;
+  }
+  .task-content { flex: 1; color: var(--text-primary); }
+  .task-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .task-add-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .task-add-row input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-primary);
+    background: #fff;
+    outline: none;
+  }
+  .task-add-row input:focus { border-color: var(--blue); }
+  .task-add-row button {
+    padding: 7px 14px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .task-add-row button:hover { opacity: 0.85; }
+
+  /* ── 게시판 ───────────────────────────────── */
+  .btabs {
+    display: flex;
+    gap: 2px;
+    background: #F0F2F7;
+    border-radius: 7px;
+    padding: 3px;
+    margin-bottom: 10px;
+  }
+  .btab {
+    flex: 1;
+    text-align: center;
+    padding: 5px 4px;
+    font-size: 11px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-family: 'Noto Sans KR', sans-serif;
+    border: none;
+    background: transparent;
+    transition: all 0.15s;
+  }
+  .btab.on {
+    background: #fff;
+    color: var(--text-primary);
+    font-weight: 700;
+    border: 1px solid var(--border);
+  }
+  .blist { display: flex; flex-direction: column; }
+  .brow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 4px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    border-radius: 4px;
+  }
+  .brow:last-child { border-bottom: none; }
+  .brow:hover { background: #F7F8FB; }
+  .bcat {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    min-width: 34px;
+    text-align: center;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .bc-notice { background: #E6F1FB; color: #185FA5; }
+  .bc-news   { background: #FBEAF0; color: #993556; }
+  .bc-faq    { background: #EAF3DE; color: #3B6D11; }
+  .bc-qna    { background: #FAEEDA; color: #854F0B; }
+  .btitle {
+    font-size: 12px;
+    color: var(--text-primary);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bdate { font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
+
+  /* ── 회의실 ───────────────────────────────── */
+  .room-hint {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+  .leg-dot { width: 9px; height: 9px; border-radius: 2px; }
+  .leg-booked { background: #FAEAEA; border: 1px solid #E24B4A; }
+  .leg-avail  { background: #D8EFD4; border: 1px solid #1D9E75; }
+
+  .room-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .room-table th {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
+    padding: 0 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .room-table th:first-child { text-align: left; }
+  .room-table td {
+    padding: 7px 6px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .room-table td:first-child { text-align: left; }
+  .room-table tr:last-child td { border-bottom: none; }
+  .room-name-cell { font-size: 11px; color: var(--text-primary); font-weight: 500; }
+  .room-sub { font-size: 10px; color: var(--text-muted); font-weight: 400; }
+  .slot-chip {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .slot-booked { background: #FAEAEA; color: #A32D2D; }
+  .slot-avail  { background: #D8EFD4; color: #2A6B2A; }
+  .reserve-btn {
+    font-size: 10px;
+    padding: 4px 9px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: background 0.1s;
+  }
+  .reserve-btn:hover { background: #F0F2F7; }
+
+  /* ── 우측 패널 ───────────────────────────── */
+  .sch-list { display: flex; flex-direction: column; gap: 8px; }
+  .sch-row { display: flex; gap: 10px; align-items: flex-start; }
+  .sch-day { text-align: center; min-width: 28px; flex-shrink: 0; }
+  .sch-dow { font-size: 10px; color: var(--text-muted); }
+  .sch-d { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+  .sch-today .sch-d { color: var(--blue); }
+  .sch-today .sch-dow { color: var(--blue); }
+  .sch-vline { width: 2px; border-radius: 2px; background: var(--border); flex-shrink: 0; align-self: stretch; margin-top: 4px; }
+  .sch-today .sch-vline { background: var(--blue); }
+  .sch-info { flex: 1; }
+  .sch-title { font-size: 12px; color: var(--text-primary); font-weight: 500; }
+  .sch-loc { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+  .appr-list { display: flex; flex-direction: column; gap: 4px; }
+  .appr-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .appr-row:hover { background: #F7F8FB; }
+  .appr-ico {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .appr-info { flex: 1; min-width: 0; }
+  .appr-title {
+    font-size: 11px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+  }
+  .appr-sub { font-size: 10px; color: var(--text-muted); }
+  .appr-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    background: #FAEEDA;
+    color: #854F0B;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .appr-header-link {
+    font-size: 10px;
+    background: #FEF0E6;
+    color: #994A1A;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .leave-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .leave-stat {
+    flex: 1;
+    text-align: center;
+    background: #F7F8FB;
+    border-radius: 8px;
+    padding: 9px 4px;
+  }
+  .leave-n { font-size: 17px; font-weight: 700; }
+  .leave-l { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .leave-btn {
+    width: 100%;
+    padding: 8px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+  }
+  .leave-btn:hover { opacity: 0.85; }
+
+  /* ── section divider inside card ── */
+  .sec-div {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+<div class="portal">
+
+  <!-- 상단바 -->
+  <div class="topbar">
+    <div class="logo">
+      <span class="logo-mark"></span>
+      AUD Platform
+      <span class="logo-divider"></span>
+      <span class="logo-sub">BCP 업무포털</span>
+    </div>
+    <div class="top-right">
+      <button class="bell-btn">🔔</button>
+      <span class="user-chip">홍혜림 사원 · 컨설팅사업부</span>
+    </div>
+  </div>
+
+  <!-- 인사/퀵링크 바 -->
+  <div class="greetbar">
+    <div>
+      <div class="greet-text">안녕하세요, <strong>홍혜림</strong> 님 👋</div>
+      <div class="greet-date">2026년 4월 20일 (월)</div>
+    </div>
+    <div class="quicklinks">
+      <button class="ql" style="background:#FEF0E6;color:#994A1A;">
+        <span class="ql-dot" style="background:#D85A30;"></span>전자결재 시스템 ↗
+      </button>
+      <button class="ql" style="background:#E6EEF7;color:#154C8A;">
+        <span class="ql-dot" style="background:#2D7DD2;"></span>BPMS ↗
+      </button>
+      <button class="ql" style="background:#E3F5EE;color:#0D6648;">
+        <span class="ql-dot" style="background:#1D9E75;"></span>CRM ↗
+      </button>
+      <button class="ql" style="background:#EEEDFE;color:#3C3489;">
+        <span class="ql-dot" style="background:#7F77DD;"></span>B-GPT ↗
+      </button>
+    </div>
+  </div>
+
+  <!-- 본문 -->
+  <div class="body">
+
+    <!-- 왼쪽: 일일업무 -->
+    <div class="col">
+      <div class="card">
+        <div class="ch">
+          <span class="ct">📋 오늘의 일일업무</span>
+          <a class="ca" href="#">주간 전체보기 →</a>
+        </div>
+        <div class="dept-label">부서 : 컨설팅사업부 / 슬루션 컨설팅그룹 / SWAT팀</div>
+
+        <div class="task-block">
+          <div class="task-block-title">
+            <span class="tb-dot" style="background:#4A90D9;"></span>오전
+          </div>
+          <div class="task-list">
+            <div class="task-row">
+              <span class="task-num">1.</span>
+              <div class="task-content">주간 회의</div>
+            </div>
+            <div class="task-row">
+              <span class="task-num">2.</span>
+              <div class="task-content">
+                Demo
+                <div class="task-sub">- 신규 디자인 메인 와딩 검토 및 수정</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-block">
+          <div class="task-block-title">
+            <span class="tb-dot" style="background:#E8A838;"></span>오후
+          </div>
+          <div class="task-list">
+            <div class="task-row">
+              <span class="task-num">3.</span>
+              <div class="task-content">
+                Demo
+                <div class="task-sub">- 신규 디자인 메인 와딩 검토 및 수정</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-add-row">
+          <input type="text" placeholder="업무 내용을 입력하세요..." />
+          <button>저장</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 가운데: 게시판 + 회의실 -->
+    <div class="col">
+
+      <!-- 게시판 -->
+      <div class="card">
+        <div class="ch">
+          <span class="ct">📢 게시판</span>
+          <a class="ca" href="#">전체보기 →</a>
+        </div>
+        <div class="btabs">
+          <button class="btab on" id="t-notice" onclick="switchTab('notice')">공지사항</button>
+          <button class="btab" id="t-news"   onclick="switchTab('news')">BI 뉴스</button>
+          <button class="btab" id="t-faq"    onclick="switchTab('faq')">FAQ</button>
+          <button class="btab" id="t-qna"    onclick="switchTab('qna')">Q&amp;A</button>
+        </div>
+        <div class="blist" id="blist"></div>
+      </div>
+
+      <!-- 회의실 -->
+      <div class="card">
+        <div class="ch">
+          <span class="ct">🏢 회의실 예약 현황</span>
+          <a class="ca" href="#">예약하기 →</a>
+        </div>
+        <div class="room-hint">
+          2026.04.20 기준 · 주요 시간대
+          <span class="leg-item"><span class="leg-dot leg-booked"></span>예약됨</span>
+          <span class="leg-item"><span class="leg-dot leg-avail"></span>예약가능</span>
+        </div>
+        <table class="room-table">
+          <thead>
+            <tr>
+              <th style="width:90px;">회의실</th>
+              <th>09–11시</th>
+              <th>11–13시</th>
+              <th>14–16시</th>
+              <th>16–18시</th>
+              <th style="width:44px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="room-name-cell">본사 10층</div><div class="room-sub">대회의실</div></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><button class="reserve-btn">예약</button></td>
+            </tr>
+            <tr>
+              <td><div class="room-name-cell">본사 11층</div><div class="room-sub">대회의실</div></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><button class="reserve-btn">예약</button></td>
+            </tr>
+            <tr>
+              <td><div class="room-name-cell">본사 12층</div><div class="room-sub">3회의실</div></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><button class="reserve-btn">예약</button></td>
+            </tr>
+            <tr>
+              <td><div class="room-name-cell">본사 17층</div><div class="room-sub">소회의실</div></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><button class="reserve-btn">예약</button></td>
+            </tr>
+            <tr>
+              <td><div class="room-name-cell">교육센터</div><div class="room-sub">1회의실</div></td>
+              <td><span class="slot-chip slot-booked">예약됨</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><span class="slot-chip slot-avail">가능</span></td>
+              <td><button class="reserve-btn">예약</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 일정 + 전자결재 + 휴가 -->
+    <div class="col">
+
+      <!-- 이번 주 일정 -->
+      <div class="card">
+        <div class="ch">
+          <span class="ct">📅 이번 주 일정</span>
+          <a class="ca" href="#">캘린더 →</a>
+        </div>
+        <div class="sch-list">
+          <div class="sch-row sch-today">
+            <div class="sch-day"><div class="sch-dow">MON</div><div class="sch-d">20</div></div>
+            <div class="sch-vline"></div>
+            <div class="sch-info">
+              <div class="sch-title">BCP UI 개편 킥오프 미팅</div>
+              <div class="sch-loc">10:00 · 본사 대회의실 A</div>
+            </div>
+          </div>
+          <div class="sch-row">
+            <div class="sch-day"><div class="sch-dow">TUE</div><div class="sch-d">21</div></div>
+            <div class="sch-vline"></div>
+            <div class="sch-info">
+              <div class="sch-title">고객사 A 컨설팅 미팅</div>
+              <div class="sch-loc">14:00 · 온라인</div>
+            </div>
+          </div>
+          <div class="sch-row">
+            <div class="sch-day"><div class="sch-dow">THU</div><div class="sch-d">23</div></div>
+            <div class="sch-vline"></div>
+            <div class="sch-info">
+              <div class="sch-title">월간 팀 리뷰</div>
+              <div class="sch-loc">16:00 · 소회의실 B</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 결재 대기 -->
+      <div class="card">
+        <div class="ch">
+          <span class="ct">✅ 결재 대기</span>
+          <button class="appr-header-link">전자결재 시스템 ↗</button>
+        </div>
+        <div class="appr-list">
+          <div class="appr-row">
+            <div class="appr-ico" style="background:#FEF0E6;">📄</div>
+            <div class="appr-info">
+              <div class="appr-title">4월 법인카드 사용 내역</div>
+              <div class="appr-sub">경영지원팀 · 04.18</div>
+            </div>
+            <span class="appr-badge">대기</span>
+          </div>
+          <div class="appr-row">
+            <div class="appr-ico" style="background:#E3F5EE;">📋</div>
+            <div class="appr-info">
+              <div class="appr-title">출장비 정산 — 영업팀</div>
+              <div class="appr-sub">영업팀 · 04.17</div>
+            </div>
+            <span class="appr-badge">대기</span>
+          </div>
+          <div class="appr-row">
+            <div class="appr-ico" style="background:#EEEDFE;">📊</div>
+            <div class="appr-info">
+              <div class="appr-title">휴가 신청 — 홍혜림</div>
+              <div class="appr-sub">인사팀 · 04.16</div>
+            </div>
+            <span class="appr-badge">대기</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 나의 휴가 -->
+      <div class="card">
+        <div class="ch">
+          <span class="ct">🏖 나의 휴가</span>
+          <a class="ca" href="#">신청하기 →</a>
+        </div>
+        <div class="leave-row">
+          <div class="leave-stat">
+            <div class="leave-n" style="color:#2D7DD2;">8.5</div>
+            <div class="leave-l">잔여 연차</div>
+          </div>
+          <div class="leave-stat">
+            <div class="leave-n" style="color:#1D9E75;">6.5</div>
+            <div class="leave-l">사용 연차</div>
+          </div>
+          <div class="leave-stat">
+            <div class="leave-n" style="color:#A0A3B1;">15</div>
+            <div class="leave-l">총 연차</div>
+          </div>
+        </div>
+        <button class="leave-btn">+ 휴가 신청</button>
+      </div>
+
+    </div>
+  </div><!-- /body -->
+</div><!-- /portal -->
+
+<script>
+const bd = {
+  notice: [
+    { cat:'공지', cls:'bc-notice', title:'[공고] 인사 명령(신규입사)', date:'04.14' },
+    { cat:'공지', cls:'bc-notice', title:'2025년 인사고과 실시의 건', date:'03.03' },
+    { cat:'공지', cls:'bc-notice', title:'[공고] 인사 명령(부서변경)', date:'02.24' },
+    { cat:'공지', cls:'bc-notice', title:'[공지] 설날 선물 주소록 정비 공지', date:'02.05' },
+    { cat:'공지', cls:'bc-notice', title:'[공고] 인사 명령(신규입사)', date:'02.02' },
+  ],
+  news: [
+    { cat:'뉴스', cls:'bc-news', title:'"데이터 유출 제로" AI 보안 트리니티 표준 제시', date:'04.16' },
+    { cat:'소식', cls:'bc-news', title:'2026년 3월 사내소식지', date:'03.17' },
+    { cat:'뉴스레터', cls:'bc-news', title:'2026년 2월 뉴스레터', date:'02.23' },
+    { cat:'소식', cls:'bc-news', title:'2026년 1월 사내소식지', date:'01.15' },
+    { cat:'뉴스', cls:'bc-news', title:'PwC컨설팅과 트리니티 파트너십 체결', date:'01.08' },
+  ],
+  faq: [
+    { cat:'FAQ', cls:'bc-faq', title:'연차 신청은 어떻게 하나요?', date:'04.01' },
+    { cat:'FAQ', cls:'bc-faq', title:'법인카드 사용 절차가 궁금합니다', date:'03.15' },
+    { cat:'FAQ', cls:'bc-faq', title:'기술지원 요청 프로세스 안내', date:'03.01' },
+    { cat:'FAQ', cls:'bc-faq', title:'재택근무 신청 방법', date:'02.20' },
+    { cat:'FAQ', cls:'bc-faq', title:'B-GPT 사용 권한 신청 방법', date:'02.10' },
+  ],
+  qna: [
+    { cat:'Q&A', cls:'bc-qna', title:'출장비 정산 관련 문의', date:'04.18' },
+    { cat:'Q&A', cls:'bc-qna', title:'CRM 접속 오류 문의', date:'04.10' },
+    { cat:'Q&A', cls:'bc-qna', title:'BPMS 결재선 설정 방법', date:'03.28' },
+    { cat:'Q&A', cls:'bc-qna', title:'회의실 예약 취소 방법', date:'03.20' },
+    { cat:'Q&A', cls:'bc-qna', title:'사원증 재발급 신청', date:'03.05' },
+  ]
+};
+
+function switchTab(tab) {
+  document.querySelectorAll('.btab').forEach(t => t.classList.remove('on'));
+  document.getElementById('t-' + tab).classList.add('on');
+  document.getElementById('blist').innerHTML = bd[tab].map(d =>
+    `<div class="brow">
+      <span class="bcat ${d.cls}">${d.cat}</span>
+      <span class="btitle">${d.title}</span>
+      <span class="bdate">${d.date}</span>
+    </div>`
+  ).join('');
+}
+switchTab('notice');
+</script>
+</body>
+</html>
