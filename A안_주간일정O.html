@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCP 업무포털 - 통합 대시보드 (A안)</title>
+    <title>BCP 업무포털 - 통합 대시보드 (주간일정O)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -57,90 +57,92 @@
             
             <!-- 상단 도구 Row -->
             <div class="grid grid-cols-3 gap-4 h-[240px] shrink-0">
-                 <!-- 1. 나의 즐겨찾기 -->
+                
+                <!-- 1. 나의 즐겨찾기 (플랫 리스트 형태) -->
                 <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
-				<div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
-					<h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
-						<i class="fa-solid fa-star text-yellow-400"></i> 나의 즐겨찾기
-					</h2>
-					<button class="text-slate-400 hover:text-corporate-accent transition-colors"><i class="fa-solid fa-gear text-[12px]"></i></button>
-				</div>
-				<div class="flex-1 p-3 overflow-hidden">
-					<div class="grid grid-cols-3 grid-rows-2 gap-3 h-full">
-						<a href="#" class="flex flex-col items-center justify-center gap-2 p-2 bg-slate-50 border border-slate-100 hover:border-corporate-accent hover:bg-blue-50 text-slate-600 rounded-xl transition-all group h-full">
-							<i class="fa-solid fa-plane-departure text-[20px] text-slate-400 group-hover:text-corporate-accent transition-colors"></i>
-							<span class="text-[11px] font-bold whitespace-nowrap">휴가 신청</span>
-						</a>
-						<a href="#" class="flex flex-col items-center justify-center gap-1 p-2 bg-slate-50 border border-slate-100 hover:border-corporate-accent hover:bg-blue-50 text-slate-600 rounded-xl transition-all group h-full text-center">
-							<i class="fa-solid fa-comments-dollar text-[20px] text-slate-400 group-hover:text-corporate-accent transition-colors"></i>
-							<span class="text-[10px] font-bold leading-tight px-1">프리세일즈 및<br>컨설팅 요청</span>
-						</a>
-						<a href="#" class="flex flex-col items-center justify-center gap-2 p-2 bg-slate-50 border border-slate-100 hover:border-corporate-accent hover:bg-blue-50 text-slate-600 rounded-xl transition-all group h-full">
-							<i class="fa-solid fa-chart-line text-[20px] text-slate-400 group-hover:text-corporate-accent transition-colors"></i>
-							<span class="text-[11px] font-bold whitespace-nowrap">영업 관리</span>
-						</a>
-						<a href="#" class="flex flex-col items-center justify-center gap-2 p-2 bg-slate-50 border border-slate-100 hover:border-corporate-accent hover:bg-blue-50 text-slate-600 rounded-xl transition-all group h-full">
-							<i class="fa-solid fa-car-side text-[20px] text-slate-400 group-hover:text-corporate-accent transition-colors"></i>
-							<span class="text-[11px] font-bold whitespace-nowrap">차량 운행 예약</span>
-						</a>
-						
-						<div class="invisible group-hover:visible border border-dashed border-slate-100 rounded-xl"></div>
-						<div class="invisible border border-dashed border-slate-100 rounded-xl"></div>
-					</div>
-				</div>
-			</section>
-				
-				<!-- 2. 퀵 메뉴 (전사 공통 도구) -->
-            <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
-                <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 shrink-0">
-                    <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-layer-group text-corporate-accent"></i> 퀵 메뉴
-                    </h2>
-                </div>
-                <div class="flex-1 p-4 overflow-hidden">
-                    <div class="grid grid-cols-2 grid-rows-3 gap-3 h-full">
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-orange-200 hover:bg-orange-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-orange-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-solid fa-file-signature text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">전자결재</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-teal-200 hover:bg-teal-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-teal-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-solid fa-users-gear text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">CRM</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-sky-200 hover:bg-sky-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-sky-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-regular fa-envelope text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">사내메일</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-indigo-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-solid fa-microchip text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">RND</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-rose-200 hover:bg-rose-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-rose-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-solid fa-cloud-arrow-down text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">다운로드</span>
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-purple-200 hover:bg-purple-50/30 transition-all group h-full">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-purple-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
-                                <i class="fa-solid fa-robot text-[18px]"></i>
-                            </div>
-                            <span class="text-[12px] font-bold text-slate-700">B-GPT</span>
-                        </a>
+                    <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
+                        <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-star text-yellow-400"></i> 나의 즐겨찾기
+                        </h2>
+                        <button class="text-slate-400 hover:text-corporate-accent transition-colors"><i class="fa-solid fa-gear text-[12px]"></i></button>
                     </div>
-                </div>
-            </section>
+                    <div class="flex-1 p-4 overflow-y-auto overflow-x-hidden">
+                        <ul class="flex flex-col gap-1.5 text-[13px] text-slate-700">
+                            <li class="flex items-center gap-2 py-1.5 px-2 hover:bg-slate-50 rounded-lg cursor-pointer group transition-colors">
+                                <i class="fa-solid fa-file-lines text-corporate-accent text-[13px] opacity-80"></i>
+                                <span class="truncate group-hover:text-corporate-accent transition-colors font-medium text-[12.5px]">직원 검색</span>
+                            </li>
+                            <li class="flex items-center gap-2 py-1.5 px-2 hover:bg-slate-50 rounded-lg cursor-pointer group transition-colors">
+                                <i class="fa-solid fa-file-lines text-corporate-accent text-[13px] opacity-80"></i>
+                                <span class="truncate group-hover:text-corporate-accent transition-colors font-medium text-[12.5px]">휴가 현황</span>
+                            </li>
+                            <li class="flex items-center gap-2 py-1.5 px-2 bg-blue-50/60 rounded-lg cursor-pointer group">
+                                <i class="fa-solid fa-file-lines text-corporate-accent text-[13px] opacity-80"></i>
+                                <span class="truncate font-bold text-corporate-900 text-[12.5px]">회의실 예약</span>
+                            </li>
+                            <li class="flex items-center gap-2 py-1.5 px-2 hover:bg-slate-50 rounded-lg cursor-pointer group transition-colors">
+                                <i class="fa-solid fa-file-lines text-corporate-accent text-[13px] opacity-80"></i>
+                                <span class="truncate group-hover:text-corporate-accent transition-colors font-medium text-[12.5px]">차량 운행 예약</span>
+                            </li>
+                            <li class="flex items-center gap-2 py-1.5 px-2 hover:bg-slate-50 rounded-lg cursor-pointer group transition-colors">
+                                <i class="fa-solid fa-file-lines text-corporate-accent text-[13px] opacity-80"></i>
+                                <span class="truncate group-hover:text-corporate-accent transition-colors font-medium text-[12.5px]">해외출장경비등록</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+				
+				<!-- 2. Quick Link (전사 공통 도구) -->
+                <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
+                    <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 shrink-0">
+                        <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-corporate-accent"></i> Quick Link
+                        </h2>
+                    </div>
+                    <div class="flex-1 p-4 overflow-hidden">
+                        <div class="grid grid-cols-2 grid-rows-3 gap-3 h-full">
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-orange-200 hover:bg-orange-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-orange-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-solid fa-file-signature text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">전자결재</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-teal-200 hover:bg-teal-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-teal-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-solid fa-users-gear text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">CRM</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-sky-200 hover:bg-sky-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-sky-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-regular fa-envelope text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">사내메일</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-indigo-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-solid fa-microchip text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">RND</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-rose-200 hover:bg-rose-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-rose-500 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-solid fa-cloud-arrow-down text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">다운로드</span>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 hover:border-purple-200 hover:bg-purple-50/30 transition-all group h-full">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-100 text-purple-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                                    <i class="fa-solid fa-robot text-[18px]"></i>
+                                </div>
+                                <span class="text-[12px] font-bold text-slate-700">B-GPT</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
 
 
-                <!-- 3. 임직원 검색 -->
+                <!-- 3. 임직원 검색 (동적 검색 및 한 줄 형태) -->
                 <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
                     <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
                         <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
@@ -149,28 +151,38 @@
                     </div>
                     <div class="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
                         <div class="relative shrink-0">
-                            <input type="text" placeholder="이름, 부서 검색..." class="w-full bg-slate-50 border border-slate-200 text-[12px] rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-corporate-accent focus:ring-1 focus:ring-corporate-accent transition-colors shadow-sm">
+                            <input type="text" id="employee-search-input" onkeyup="searchEmployee()" placeholder="이름, 부서 검색..." class="w-full bg-slate-50 border border-slate-200 text-[12px] rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-corporate-accent focus:ring-1 focus:ring-corporate-accent transition-colors shadow-sm">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[12px]"></i>
                         </div>
-                        <div class="flex items-center justify-between px-1 shrink-0">
-                            <h3 class="text-[11px] font-bold text-slate-500">검색 결과 <span class="text-corporate-accent ml-1">3건</span></h3>
-                        </div>
-                        <div class="flex-1 overflow-y-auto overflow-x-hidden flex flex-col gap-2 pr-1">
-                            <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-colors cursor-pointer group">
-                                <div class="w-8 h-8 rounded-full bg-blue-100 text-corporate-accent flex items-center justify-center font-bold text-[12px] shrink-0">김</div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="text-[12px] font-bold text-slate-800 truncate group-hover:text-corporate-accent transition-colors">김지수 선임</p>
-                                    <p class="text-[10px] text-slate-500 truncate mt-0.5">컨설팅 1팀</p>
-                                </div>
-                                <i class="fa-solid fa-comment-dots text-[13px] text-slate-300 group-hover:text-slate-500 shrink-0"></i>
+                        
+                        <!-- 빈 상태 (초기 화면) -->
+                        <div id="search-empty-state" class="flex-1 flex flex-col items-center justify-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 mb-1">
+                                <i class="fa-solid fa-user-magnifying-glass text-[16px]"></i>
                             </div>
-                            <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-colors cursor-pointer group">
-                                <div class="w-8 h-8 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-[12px] shrink-0">이</div>
-                                <div class="min-w-0 flex-1">
-                                    <p class="text-[12px] font-bold text-slate-800 truncate group-hover:text-corporate-accent transition-colors">이도현 책임</p>
-                                    <p class="text-[10px] text-slate-500 truncate mt-0.5">경영지원팀</p>
+                            <p class="text-[11px] text-slate-400 text-center leading-relaxed">검색할 임직원의<br>이름이나 부서를 입력해주세요.</p>
+                        </div>
+
+                        <!-- 검색 결과 컨테이너 -->
+                        <div id="search-result-container" class="hidden flex-1 flex flex-col gap-2 overflow-hidden">
+                            <div class="flex items-center justify-between px-1 shrink-0">
+                                <h3 class="text-[11px] font-bold text-slate-500">검색 결과 <span class="text-corporate-accent ml-1">1건</span></h3>
+                            </div>
+                            <div class="flex-1 overflow-y-auto overflow-x-hidden flex flex-col gap-2 pr-1">
+                                <!-- 홍혜림 데이터 (한 줄 배치 형태) -->
+                                <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 hover:border-corporate-accent hover:shadow-sm transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-2.5 min-w-0">
+                                        <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-[12px] shrink-0">홍</div>
+                                        <div class="flex items-baseline gap-1.5 min-w-0">
+                                            <span class="text-[13px] font-bold text-slate-800 group-hover:text-corporate-accent transition-colors truncate">홍혜림</span>
+                                            <span class="text-[11px] text-slate-500 shrink-0">선임</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5 shrink-0 bg-slate-50 px-2 py-1 rounded border border-slate-100">
+                                        <i class="fa-solid fa-mobile-screen-button text-slate-400 text-[10px]"></i>
+                                        <span class="text-[11px] font-medium text-slate-600 tracking-wider">010-1234-5678</span>
+                                    </div>
                                 </div>
-                                <i class="fa-solid fa-comment-dots text-[13px] text-slate-300 group-hover:text-slate-500 shrink-0"></i>
                             </div>
                         </div>
                     </div>
@@ -261,7 +273,7 @@
         =========================================== -->
         <aside class="w-[25%] min-w-[280px] flex flex-col gap-4 min-h-0">
             
-            <!-- 4. 이번 주 나의 일정 (오전/오후 분리형 타임라인, 가로 스크롤 제거 완벽 반영) -->
+            <!-- 기존 영역 유지: 4. 이번 주 나의 일정 (일정 있음) -->
             <section class="h-[240px] shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
                 <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
                     <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
@@ -270,96 +282,53 @@
                     <button class="text-slate-400 hover:text-corporate-accent transition-colors"><i class="fa-solid fa-plus text-[12px]"></i></button>
                 </div>
                 <div class="flex-1 flex flex-col overflow-hidden p-4">
-                    <div class="flex-1 overflow-y-auto overflow-x-hidden pr-1 flex flex-col">
+                    <div class="flex-1 overflow-y-auto overflow-x-hidden pr-1 flex flex-col gap-2.5">
                         
-                        <!-- 20 (월) -->
-                        <div class="flex gap-3 items-center py-2.5 px-2 border-b border-slate-50">
-                            <div class="w-8 flex flex-col items-center justify-center shrink-0">
-                                <span class="text-[10px] font-bold text-slate-400">월</span>
-                                <span class="text-[14px] font-extrabold text-slate-600 leading-none mt-0.5">20</span>
+                        <!-- 오늘 일정 1 -->
+                        <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-corporate-accent min-w-0">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">주간 업무 보고 및 점검</h3>
+                                <span class="bg-corporate-50 text-corporate-accent px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0">오늘</span>
                             </div>
-                            <div class="flex-1 flex flex-col gap-1.5 min-w-0 border-l border-slate-100 pl-3">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">오전</span>
-                                    <p class="text-[11px] font-medium text-slate-700 truncate">삼성전자 DA 디자인 적용 지원</p>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded shrink-0">오후</span>
-                                    <p class="text-[11px] text-slate-400 truncate">일정 없음</p>
-                                </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <div class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-location-dot text-slate-400 w-3 text-center"></i> 본사 11층 1회의실</div>
+                                <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 10:00~11:30</div>
                             </div>
                         </div>
 
-                        <!-- 21 (화) - 오늘 하이라이트 (음수 margin 제거로 가로스크롤 방지) -->
-                        <div class="flex gap-3 items-center py-2.5 px-2 border-b border-slate-50 bg-blue-50/40 rounded-lg">
-                            <div class="w-8 flex flex-col items-center justify-center shrink-0 text-corporate-accent">
-                                <span class="text-[10px] font-bold">오늘</span>
-                                <span class="text-[14px] font-extrabold leading-none mt-0.5">21</span>
+                        <!-- 오늘 일정 2 -->
+                        <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-corporate-accent min-w-0">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">신규 프로젝트 킥오프</h3>
+                                <span class="bg-corporate-50 text-corporate-accent px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0">오늘</span>
                             </div>
-                            <div class="flex-1 flex flex-col gap-1.5 min-w-0 border-l border-blue-100 pl-3">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-white bg-corporate-accent px-1.5 py-0.5 rounded shrink-0">오전</span>
-                                    <p class="text-[11px] font-bold text-corporate-900 truncate">Demo 기능별 보고서 점검</p>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-400 bg-white border border-slate-200 px-1.5 py-0.5 rounded shrink-0">오후</span>
-                                    <p class="text-[11px] text-slate-400 truncate">일정 없음</p>
-                                </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <div class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-location-dot text-slate-400 w-3 text-center"></i> 본사 17층 대회의실</div>
+                                <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 14:00~15:00</div>
                             </div>
                         </div>
 
-                        <!-- 22 (수) -->
-                        <div class="flex gap-3 items-center py-2.5 px-2 border-b border-slate-50">
-                            <div class="w-8 flex flex-col items-center justify-center shrink-0">
-                                <span class="text-[10px] font-bold text-slate-400">수</span>
-                                <span class="text-[14px] font-extrabold text-slate-600 leading-none mt-0.5">22</span>
+                        <!-- 예정 일정 1 -->
+                        <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-slate-300 min-w-0 opacity-80 hover:opacity-100">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">컨설팅 1팀 월간 회의</h3>
+                                <span class="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0">수요일</span>
                             </div>
-                            <div class="flex-1 flex flex-col gap-1.5 min-w-0 border-l border-slate-100 pl-3">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded shrink-0">오전</span>
-                                    <p class="text-[11px] text-slate-400 truncate">일정 없음</p>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">오후</span>
-                                    <p class="text-[11px] font-medium text-slate-700 truncate">품질기술그룹 미팅</p>
-                                    <span class="text-[9px] font-medium text-slate-400 bg-slate-50 px-1 rounded shrink-0 ml-auto">14:00~15:00</span>
-                                </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <div class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-location-dot text-slate-400 w-3 text-center"></i> 본사 11층 3회의실</div>
+                                <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 09:30~11:00</div>
                             </div>
                         </div>
 
-                        <!-- 23 (목) -->
-                        <div class="flex gap-3 items-center py-2.5 px-2 border-b border-slate-50">
-                            <div class="w-8 flex flex-col items-center justify-center shrink-0">
-                                <span class="text-[10px] font-bold text-slate-400">목</span>
-                                <span class="text-[14px] font-extrabold text-slate-600 leading-none mt-0.5">23</span>
+                        <!-- 예정 일정 2 -->
+                        <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-slate-300 min-w-0 opacity-80 hover:opacity-100">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">클라이언트 제안서 리뷰</h3>
+                                <span class="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0">목요일</span>
                             </div>
-                            <div class="flex-1 flex flex-col gap-1.5 min-w-0 border-l border-slate-100 pl-3">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">오전</span>
-                                    <p class="text-[11px] font-medium text-slate-700 truncate">Demo 신기능 적용 사례 작성</p>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded shrink-0">오후</span>
-                                    <p class="text-[11px] text-slate-400 truncate">일정 없음</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 24 (금) -->
-                        <div class="flex gap-3 items-center py-2.5 px-2">
-                            <div class="w-8 flex flex-col items-center justify-center shrink-0">
-                                <span class="text-[10px] font-bold text-slate-400">금</span>
-                                <span class="text-[14px] font-extrabold text-slate-600 leading-none mt-0.5">24</span>
-                            </div>
-                            <div class="flex-1 flex flex-col gap-1.5 min-w-0 border-l border-slate-100 pl-3">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded shrink-0">오전</span>
-                                    <p class="text-[11px] text-slate-400 truncate">일정 없음</p>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">오후</span>
-                                    <p class="text-[11px] font-medium text-slate-700 truncate">오후 반차</p>
-                                </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <div class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-location-dot text-slate-400 w-3 text-center"></i> 본사 17층 소회의실</div>
+                                <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 15:00~16:30</div>
                             </div>
                         </div>
 
@@ -367,7 +336,7 @@
                 </div>
             </section>
 
-            <!-- 5. 예약 가능 회의실 (여백 고정, 목록 스크롤 최적화) -->
+            <!-- 기존 영역 유지: 5. 예약 가능 회의실 -->
             <section class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden min-h-0">
                 <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center shrink-0 bg-slate-50/30">
                     <h2 class="text-[15px] font-bold text-corporate-900 flex items-center gap-2">
@@ -425,6 +394,22 @@
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => content.classList.add('hidden'));
             document.getElementById(targetId).classList.remove('hidden');
+        }
+
+        function searchEmployee() {
+            const input = document.getElementById('employee-search-input').value;
+            const emptyState = document.getElementById('search-empty-state');
+            const resultContainer = document.getElementById('search-result-container');
+
+            if (input.trim() === '홍혜림') {
+                emptyState.classList.add('hidden');
+                resultContainer.classList.remove('hidden');
+                resultContainer.classList.add('flex');
+            } else {
+                emptyState.classList.remove('hidden');
+                resultContainer.classList.add('hidden');
+                resultContainer.classList.remove('flex');
+            }
         }
     </script>
 </body>
