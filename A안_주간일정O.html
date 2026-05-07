@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCP 업무포털 - 통합 대시보드 (주간일정O)</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -23,7 +20,6 @@
         }
     </script>
     <style>
-        /* 커스텀 스크롤바 디자인 */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -33,7 +29,6 @@
 </head>
 <body class="bg-slate-50 h-screen w-screen overflow-hidden flex flex-col text-slate-800 antialiased font-sans">
 
-    <!-- 상단 배너 섹션 -->
     <header class="shrink-0 h-28 mx-5 mt-5 mb-4 rounded-2xl bg-gradient-to-r from-corporate-blue to-corporate-700 relative overflow-hidden shadow-md flex flex-col justify-center px-10">
         <div class="absolute right-0 top-0 opacity-20 pointer-events-none">
             <svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,16 +44,12 @@
         </div>
     </header>
 
-    <!-- 메인 대시보드 영역 -->
     <main class="flex-1 flex gap-4 px-5 pb-5 min-h-0 overflow-hidden">
         
-        <!-- 좌측 메인 패널 (75%) -->
         <div class="w-[75%] flex flex-col gap-4 min-h-0 overflow-hidden">
             
-            <!-- 상단 도구 Row -->
             <div class="grid grid-cols-3 gap-4 h-[240px] shrink-0">
                 
-                <!-- 1. 나의 즐겨찾기 (플랫 리스트 형태) -->
                 <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
                     <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
                         <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
@@ -92,8 +83,7 @@
                     </div>
                 </section>
 				
-				<!-- 2. Quick Link (전사 공통 도구) -->
-                <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
+				<section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
                     <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 shrink-0">
                         <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
                             <i class="fa-solid fa-layer-group text-corporate-accent"></i> Quick Link
@@ -142,20 +132,24 @@
                 </section>
 
 
-                <!-- 3. 임직원 검색 (동적 검색 및 한 줄 형태) -->
-                <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden relative">
-                    <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
+                <section class="bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col relative z-10">
+                    <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0 rounded-t-xl">
                         <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
                             <i class="fa-solid fa-address-book text-corporate-accent"></i> 임직원 검색
                         </h2>
                     </div>
-                    <div class="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
-                        <div class="relative shrink-0">
-                            <input type="text" id="employee-search-input" onkeyup="searchEmployee()" placeholder="이름, 부서 검색..." class="w-full bg-slate-50 border border-slate-200 text-[12px] rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-corporate-accent focus:ring-1 focus:ring-corporate-accent transition-colors shadow-sm">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[12px]"></i>
+                    
+                    <div class="flex-1 p-4 flex flex-col gap-3 relative z-20">
+                        
+                        <div class="relative shrink-0 mt-2 z-30">
+                            <div id="demo-guide-tooltip" class="absolute -top-10 right-2 bg-corporate-accent text-white text-[11px] px-1 py-1 rounded-lg shadow-md pointer-events-none animate-bounce flex items-center gap-1.5 transition-opacity duration-300 before:content-[''] before:absolute before:-bottom-1 before:right-4 before:border-[5px] before:border-transparent before:border-t-corporate-accent">
+                                <i class="fa-solid fa-circle-info text-[10px]"></i> '홍혜림'을 검색해보세요.
+                            </div>
+
+                            <input type="text" id="employee-search-input" onkeyup="searchEmployee()" placeholder="이름, 부서 검색..." class="w-full bg-slate-50 border border-slate-200 text-[12px] rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-corporate-accent focus:ring-1 focus:ring-corporate-accent transition-colors shadow-sm relative z-0">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[12px] z-0 pointer-events-none"></i>
                         </div>
                         
-                        <!-- 빈 상태 (초기 화면) -->
                         <div id="search-empty-state" class="flex-1 flex flex-col items-center justify-center gap-2">
                             <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 mb-1">
                                 <i class="fa-solid fa-user-magnifying-glass text-[16px]"></i>
@@ -163,13 +157,11 @@
                             <p class="text-[11px] text-slate-400 text-center leading-relaxed">검색할 임직원의<br>이름이나 부서를 입력해주세요.</p>
                         </div>
 
-                        <!-- 검색 결과 컨테이너 -->
                         <div id="search-result-container" class="hidden flex-1 flex flex-col gap-2 overflow-hidden">
                             <div class="flex items-center justify-between px-1 shrink-0">
                                 <h3 class="text-[11px] font-bold text-slate-500">검색 결과 <span class="text-corporate-accent ml-1">1건</span></h3>
                             </div>
                             <div class="flex-1 overflow-y-auto overflow-x-hidden flex flex-col gap-2 pr-1">
-                                <!-- 홍혜림 데이터 (한 줄 배치 형태) -->
                                 <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 hover:border-corporate-accent hover:shadow-sm transition-all cursor-pointer group">
                                     <div class="flex items-center gap-2.5 min-w-0">
                                         <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-[12px] shrink-0">홍</div>
@@ -189,7 +181,6 @@
                 </section>
             </div>
 
-            <!-- 하단 사내 소식 및 자료 (탭형 게시판) -->
             <section class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
                 <div class="px-6 pt-3.5 border-b border-slate-100 shrink-0">
                     <div class="flex justify-between items-center mb-1">
@@ -206,7 +197,6 @@
                     </div>
                 </div>
                 
-                <!-- Tab Content: 전체 -->
                 <div id="board-all" class="tab-content flex-1 overflow-y-auto overflow-x-hidden px-4 py-2">
                     <ul class="flex flex-col">
                         <li class="flex justify-between items-center py-3.5 px-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors border-b border-slate-50 last:border-0 group">
@@ -261,19 +251,13 @@
                         </li>
                     </ul>
                 </div>
-                <!-- 탭 기능 Placeholder -->
                 <div id="board-notice" class="tab-content flex-1 overflow-y-auto p-4 hidden"><div class="flex items-center justify-center h-full text-[13px] text-slate-400">공지사항 목록이 표시됩니다.</div></div>
                 <div id="board-news" class="tab-content flex-1 overflow-y-auto p-4 hidden"><div class="flex items-center justify-center h-full text-[13px] text-slate-400">사내 최신 뉴스가 표시됩니다.</div></div>
                 <div id="board-forms" class="tab-content flex-1 overflow-y-auto p-4 hidden"><div class="flex items-center justify-center h-full text-[13px] text-slate-400">각종 서식이 표시됩니다.</div></div>
             </section>
         </div>
 
-        <!-- ==========================================
-             [우측 사이드바 패널] - 전체 너비의 25%
-        =========================================== -->
         <aside class="w-[25%] min-w-[280px] flex flex-col gap-4 min-h-0">
-            
-            <!-- 기존 영역 유지: 4. 이번 주 나의 일정 (일정 있음) -->
             <section class="h-[240px] shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
                 <div class="px-5 py-3 border-b border-slate-100 bg-slate-50/30 flex justify-between items-center shrink-0">
                     <h2 class="text-[14px] font-bold text-corporate-900 flex items-center gap-2">
@@ -283,8 +267,6 @@
                 </div>
                 <div class="flex-1 flex flex-col overflow-hidden p-4">
                     <div class="flex-1 overflow-y-auto overflow-x-hidden pr-1 flex flex-col gap-2.5">
-                        
-                        <!-- 오늘 일정 1 -->
                         <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-corporate-accent min-w-0">
                             <div class="flex justify-between items-start mb-1.5">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">주간 업무 보고 및 점검</h3>
@@ -295,8 +277,6 @@
                                 <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 10:00~11:30</div>
                             </div>
                         </div>
-
-                        <!-- 오늘 일정 2 -->
                         <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-corporate-accent min-w-0">
                             <div class="flex justify-between items-start mb-1.5">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">신규 프로젝트 킥오프</h3>
@@ -307,8 +287,6 @@
                                 <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 14:00~15:00</div>
                             </div>
                         </div>
-
-                        <!-- 예정 일정 1 -->
                         <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-slate-300 min-w-0 opacity-80 hover:opacity-100">
                             <div class="flex justify-between items-start mb-1.5">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">컨설팅 1팀 월간 회의</h3>
@@ -319,8 +297,6 @@
                                 <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 09:30~11:00</div>
                             </div>
                         </div>
-
-                        <!-- 예정 일정 2 -->
                         <div class="flex flex-col py-2.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-slate-300 min-w-0 opacity-80 hover:opacity-100">
                             <div class="flex justify-between items-start mb-1.5">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate pr-2">클라이언트 제안서 리뷰</h3>
@@ -331,12 +307,10 @@
                                 <div class="flex items-center gap-1.5 shrink-0 font-medium"><i class="fa-regular fa-clock text-slate-400 w-3 text-center"></i> 15:00~16:30</div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-            <!-- 기존 영역 유지: 5. 예약 가능 회의실 -->
             <section class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col overflow-hidden min-h-0">
                 <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center shrink-0 bg-slate-50/30">
                     <h2 class="text-[15px] font-bold text-corporate-900 flex items-center gap-2">
@@ -346,8 +320,6 @@
                 </div>
                 <div class="flex-1 flex flex-col overflow-hidden p-4">
                     <div class="flex-1 overflow-y-auto overflow-x-hidden pr-1 flex flex-col gap-2">
-                        
-                        <!-- 회의실 리스트 -->
                         <div class="flex items-center justify-between py-1.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-green-500 min-w-0">
                             <div class="min-w-0 flex-1 pr-2">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate">본사 11층</h3>
@@ -355,7 +327,6 @@
                             </div>
                             <span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold shrink-0">예약가능</span>
                         </div>
-                        
                         <div class="flex items-center justify-between py-1.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-green-500 min-w-0">
                             <div class="min-w-0 flex-1 pr-2">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate">본사 11층</h3>
@@ -363,7 +334,6 @@
                             </div>
                             <span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold shrink-0">예약가능</span>
                         </div>
-
                         <div class="flex items-center justify-between py-1.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-green-500 min-w-0">
                             <div class="min-w-0 flex-1 pr-2">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate">본사 17층</h3>
@@ -371,7 +341,6 @@
                             </div>
                             <span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold shrink-0">예약가능</span>
                         </div>
-
                         <div class="flex items-center justify-between py-1.5 px-3 bg-white border border-slate-100 rounded-lg hover:border-corporate-accent hover:shadow-md transition-all cursor-pointer border-l-4 border-l-green-500 min-w-0">
                             <div class="min-w-0 flex-1 pr-2">
                                 <h3 class="text-[13px] font-bold text-slate-800 truncate">본사 17층</h3>
@@ -379,7 +348,6 @@
                             </div>
                             <span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold shrink-0">예약가능</span>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -400,6 +368,14 @@
             const input = document.getElementById('employee-search-input').value;
             const emptyState = document.getElementById('search-empty-state');
             const resultContainer = document.getElementById('search-result-container');
+            const tooltip = document.getElementById('demo-guide-tooltip');
+
+            // 텍스트가 입력되면 시연 가이드 툴팁 자연스럽게 숨김
+            if (input.length > 0 && tooltip) {
+                tooltip.style.opacity = '0';
+            } else if (input.length === 0 && tooltip) {
+                tooltip.style.opacity = '1';
+            }
 
             if (input.trim() === '홍혜림') {
                 emptyState.classList.add('hidden');
